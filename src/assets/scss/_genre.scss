@@ -1,0 +1,11 @@
+.genre {
+    padding: 50px;
+}
+
+.images {
+    display: flex;
+}
+
+.img:not(:last-child) {
+    margin-right: 5px;
+}

@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import wallpaperBg from '@//assets/background.jpg'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: { bgImage: wallpaperBg }
   },
   {
     path: '/about',
@@ -17,9 +19,26 @@ const routes = [
   }
 ]
 
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.afterEach(to => {
+  if(to.meta && to.meta.bgImage) {
+    document.documentElement.style.backgroundImage = `url(${to.meta.bgImage})`;
+    document.documentElement.style.backgroundRepeat = "no-repeat";
+    document.documentElement.style.backgroundPosition = "center";
+    document.documentElement.style.backgroundSize = "cover";
+    document.documentElement.style.backgroundAttachment = "fixed";
+  } else {
+    document.documentElement.style.backgroundRepeat = "";
+    document.documentElement.style.backgroundSize = "";
+    document.documentElement.style.backgroundPosition = "";
+    document.documentElement.style.backgroundImage = "";
+    document.documentElement.style.backgroundAttachment = "";
+  }
 })
 
 export default router

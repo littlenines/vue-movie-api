@@ -1,5 +1,14 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Genre />
   </div>
 </template>
+
+<script>
+import Genre from '@/components/MovieGenre.vue'
+export default {
+    components: {
+    Genre
+  }
+}
+</script>

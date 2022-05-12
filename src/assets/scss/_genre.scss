@@ -4,8 +4,21 @@
 
 .images {
     display: flex;
+    flex-direction: column;
+    @include xs {
+        flex-direction: row;
+    }
+}
+
+.img {
+    margin-bottom: 10px;
+    @include xs {
+        margin-bottom: unset;
+    }
 }
 
 .img:not(:last-child) {
-    margin-right: 5px;
+    @include xs {
+        margin-right: 5px;
+    }
 }

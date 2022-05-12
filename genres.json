@@ -4,10 +4,17 @@
             "id": 28,
             "name": "Action"
         },
-        {"id":878,"name":"Science Fiction"},
+        {
+            "id": 878,
+            "name": "Science Fiction"
+        },
         {
             "id": 16,
             "name": "Animation"
+        },
+        {
+            "id": 10770,
+            "name": "TV Movie"
         }
     ]
 }

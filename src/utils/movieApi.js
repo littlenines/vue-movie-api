@@ -12,3 +12,13 @@ export const getMoviesApi = async (genreId) => {
         console.error(error);
     }
 }
+
+export const getImdbMovie = async(movieId) => {
+    try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}&language=en-US`)
+        const data = await response.json();
+        return Promise.resolve(data);
+    } catch (error) {
+        console.error(error);
+    }
+}

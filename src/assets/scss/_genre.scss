@@ -12,6 +12,8 @@
 
 .img {
     margin-bottom: 10px;
+    cursor: pointer;
+    
     @include xs {
         margin-bottom: unset;
     }

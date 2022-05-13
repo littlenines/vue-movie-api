@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import wallpaperBg from '@//assets/background.jpg'
+import { getSession } from '@/utils/sessionStorage'
 
 const routes = [
   {
@@ -10,20 +11,24 @@ const routes = [
     meta: { bgImage: wallpaperBg }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/movies',
+    name: 'movies',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('../views/MovieView.vue')
   },
   {
     path: '/imdb/:id',
     name: 'MovieImdb',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ImdbView.vue')
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import('../views/ImdbView.vue')
+  },
+  {
+    path: "/:catchAll(.*)",
+    component: () => import('@/components/PageNotFound')
   }
 ]
 
@@ -33,8 +38,20 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!getSession()) {
+      next({ name: 'home' })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
 router.afterEach(to => {
-  if(to.meta && to.meta.bgImage) {
+  if (to.meta && to.meta.bgImage) {
     document.documentElement.style.backgroundImage = `url(${to.meta.bgImage})`;
     document.documentElement.style.backgroundRepeat = "no-repeat";
     document.documentElement.style.backgroundPosition = "center";

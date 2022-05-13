@@ -2,30 +2,30 @@
   <section>
     <div v-for="imdb in movieImdb" :key="imdb.title" class="imdb-info">
       <div class="imdb-image">
-        <img :src="imgPath + imdb.poster_path" alt="" />
+        <img :src="imgPath + imdb.poster_path" :alt="imdb.title" />
       </div>
       <div class="imdb-info-main">
         <h1 class="imdb-title">{{ imdb.title }}</h1>
 
-        <p>
+        <p class="imdb-info-text">
           Release date: <span>{{ imdb.release_date }}</span>
         </p>
-        <p>
+        <p class="imdb-info-text">
           MPAA: <span>{{ imdb.adult }}</span>
         </p>
-        <p>
+        <p class="imdb-info-text">
           Duration: <span>{{ imdb.runtime }} min</span>
         </p>
-        <p>
+        <p class="imdb-info-text">
           Overview: <span>{{ imdb.overview }}</span>
         </p>
-        <p>
+        <p class="imdb-info-text">
           Status: <span>{{ imdb.status }}</span>
         </p>
-        <p>
+        <p class="imdb-info-text">
           Imdb rating: <span>{{ imdb.vote_average }}</span>
         </p>
-        <p class="imdb-genre">
+        <p class="imdb-info-text imdb-genre">
           Genre:
           <span
             v-for="imdbGenre in genre"
@@ -71,19 +71,20 @@ export default {
       } = json;
 
       adult ? (this.adult = "R") : (this.adult = "PG-13");
+    
       for (let i = 0; i < genres.length; i++) {
         this.genre.push({ genre: genres[i].name });
       }
 
       this.movieImdb.push({
-        title,
-        poster_path,
+        title:title,
+        poster_path: poster_path,
         release_date: release_date.split("-")[0],
         adult: this.adult,
-        runtime,
-        status,
-        vote_average,
-        overview,
+        runtime:runtime,
+        status: status,
+        vote_average: vote_average,
+        overview:overview,
         genres: this.genre,
       });
     },
@@ -95,59 +96,4 @@ export default {
 </script>
 
 <style lang="scss">
-.imdb-info {
-  padding: 16px;
-  @include xs {
-    display: flex;
-    padding: 32px;
-  }
-}
-
-.imdb-title,
-p {
-  color: #42b983;
-  font-weight: bold;
-
-  span {
-    color: #000;
-    font-weight: normal;
-  }
-}
-
-p {
-  margin-bottom: 10px;
-}
-
-.imdb-image {
-  max-width: 414px;
-}
-
-.imdb-info-main {
-  padding: 0;
-  @include xs {
-    padding: 0 32px;
-    flex: 1;
-  }
-}
-
-.imdb-list-info {
-  display: flex;
-}
-
-.imdb-genre {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.imdb-genre-list {
-  border: 1px solid #000;
-  padding: 5px;
-  border-radius: 35px;
-  margin-right: 5px;
-  text-align: center;
-  margin: 0 5px 5px;
-  @include xs {
-    margin: 0 5px 5px 0;
-  }
-}
 </style>

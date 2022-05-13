@@ -1,25 +1,32 @@
 .form {
-    text-align: center;
-    background-color: #ffffff10;
-    backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    padding: 25px 50px 40px;
-    border-radius: 30px;
+  text-align: center;
+  background-color: $form-color;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  padding: 25px 50px 40px;
+  border-radius: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .form-title {
- color: #fff;
+  color: $white;
 }
 
 .form-title,
 .form-username,
 .form-password {
-    margin: 0 0 20px;
+  margin: 0 0 20px;
 }
 
 .form-submit {
-    background-color: #006E7F;
-    color: #fff;
-    border-radius: 20px
+  background-color: $form-button;
+  color: $white;
+  border-radius: 20px;
+}
+
+.form-error {
+  color: $form-error;
 }

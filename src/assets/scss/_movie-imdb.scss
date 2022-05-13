@@ -1,0 +1,55 @@
+.imdb-info {
+    padding: 16px;
+    @include xs {
+      display: flex;
+      padding: 32px;
+    }
+  }
+  
+  .imdb-title,
+  .imdb-info-text {
+    color: $text-color;
+    font-weight: bold;
+  
+    span {
+      color: $black;
+      font-weight: normal;
+    }
+  }
+  
+  .imdb-info-text {
+    margin-bottom: 10px;
+  }
+  
+  .imdb-image {
+    max-width: 414px;
+  }
+  
+  .imdb-info-main {
+    padding: 0;
+    @include xs {
+      padding: 0 32px;
+      flex: 1;
+    }
+  }
+  
+  .imdb-list-info {
+    display: flex;
+  }
+  
+  .imdb-genre {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .imdb-genre-list {
+    border: 1px solid $black;
+    padding: 5px;
+    border-radius: 35px;
+    margin-right: 5px;
+    text-align: center;
+    margin: 0 5px 5px;
+    @include xs {
+      margin: 0 5px 5px 0;
+    }
+  }

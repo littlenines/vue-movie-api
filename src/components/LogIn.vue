@@ -39,7 +39,7 @@ export default {
       if (this.inputUsername === "admin" && this.inputPassword === "admin") {
         setSession();
         this.isError = false;
-        this.$router.replace('/movies');
+        this.$router.push('/movies');
       } else {
         this.isError = true;
       }

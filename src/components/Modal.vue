@@ -16,7 +16,10 @@
 
           <div class="modal-body">
             <slot
-              ><img :src="movieInfo.img" :alt="movieInfo.title" class="modal-img"
+              ><img
+                :src="movieInfo.img"
+                :alt="movieInfo.title"
+                class="modal-img"
             /></slot>
             <slot
               ><p>
@@ -39,10 +42,10 @@
             <slot name="footer">
               <router-link
                 :to="{ name: 'MovieImdb', params: { id: movieInfo.movie_id } }"
-                ><a class="modal-default-button">
-                  See More...
-                </a></router-link
+                class="modal-default-button"
               >
+                See More...
+              </router-link>
             </slot>
           </div>
         </div>
@@ -60,5 +63,5 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 </style>

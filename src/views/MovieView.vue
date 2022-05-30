@@ -4,8 +4,11 @@
   </nav>
   <div class="about">
     <!-- <Genre /> -->
-    <div data-idk>
-      
+    <div v-for="(genre, index) in idk" :key="index">
+      <h4>{{genreNames[index]}}</h4>
+      <div v-for="a in genre" :key="a.id">
+        <p>{{a.title}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -22,6 +25,7 @@ export default {
     return {
       getMovieGenres: genres.genres,
       idk: [],
+      genreNames:[]
     };
   },
   computed: {
@@ -35,8 +39,9 @@ export default {
           return bb.results.slice(0, 5);
         })
       );
-      console.log(aa);
       this.idk = aa;
+      this.genreNames = (genres.genres).map(data => data.name)
+      console.log(this.idk);
     },
   },
   created() {
